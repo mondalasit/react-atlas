@@ -3,18 +3,13 @@ import { parse } from "@babel/parser";
 import traverse from "@babel/traverse";
 
 import { ComponentInfo } from "../types/ComponentInfo";
+import { parseAST } from "./astParser";
 
 export class ComponentParser {
     public parseFile(filePath: string): ComponentInfo[] {
         const code = fs.readFileSync(filePath, "utf8");
 
-        const ast = parse(code, {
-            sourceType: "module",
-            plugins: [
-                "jsx",
-                "typescript"
-            ]
-        });
+        const ast = parseAST(filePath);
 
         const components: ComponentInfo[] = [];
 
