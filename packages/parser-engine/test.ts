@@ -1,9 +1,24 @@
 import { ProjectScanner } from "./src/scanners/projectScanner";
+import { ComponentParser } from "./src/parsers/componentParser";
 
 const scanner = new ProjectScanner();
 
+const parser = new ComponentParser();
+
 const result = scanner.scan(
-  "/Project/project/frontend"
+  "E:/Project/project/frontend"
 );
 
-console.log(result);
+for (const file of result.files) {
+  const components =
+    parser.parseFile(file);
+
+  if (components.length > 0) {
+    console.log(
+      "\nFile:",
+      file
+    );
+
+    console.table(components);
+  }
+}
