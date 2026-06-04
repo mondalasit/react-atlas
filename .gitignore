@@ -1,0 +1,83 @@
+# Dependencies
+
+node_modules/
+.pnpm-store/
+.npm/
+
+# Build Output
+
+dist/
+build/
+out/
+.next/
+
+# Coverage
+
+coverage/
+*.lcov
+
+# Logs
+
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment Variables
+
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Turbo
+
+.turbo/
+
+# TypeScript
+
+*.tsbuildinfo
+
+# IDEs
+
+.vscode/
+.idea/
+
+# OS Files
+
+.DS_Store
+Thumbs.db
+
+# Temporary Files
+
+tmp/
+temp/
+*.tmp
+
+# Cache
+
+.cache/
+.parcel-cache/
+
+# Runtime Data
+
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Generated Reports
+
+reports/
+analysis-output/
+
+# Package Locks (choose one package manager)
+
+# package-lock.json
+
+# yarn.lock
+
+# pnpm-lock.yaml
