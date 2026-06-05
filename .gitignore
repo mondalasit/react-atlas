@@ -56,7 +56,11 @@ Thumbs.db
 tmp/
 temp/
 *.tmp
-temp-projects
+# Uploads
+packages/api-server/uploads/
+
+# Temporary extracted projects
+packages/api-server/temp-projects/
 
 # Cache
 

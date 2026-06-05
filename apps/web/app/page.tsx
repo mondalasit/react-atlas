@@ -1,9 +1,9 @@
-import ProjectAnalyzer
-from "../components/ProjectAnalyzer";
+import ZipUploader
+from "../components/ZipUploader";
 
 export default function Home() {
 
   return (
-    <ProjectAnalyzer />
+    <ZipUploader />
   );
 }

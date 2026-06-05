@@ -1,73 +1,76 @@
 "use client";
 
 import ReactFlow, {
-Background,
-Controls
+  Background,
+  Controls,
 } from "reactflow";
 
 import "reactflow/dist/style.css";
 
 interface GraphNode {
-id: string;
-label: string;
+  id: string;
+  label: string;
 }
 
 interface GraphEdge {
-source: string;
-target: string;
+  source: string;
+  target: string;
 }
 
 interface Props {
-graph: {
-nodes: GraphNode[];
-edges: GraphEdge[];
-};
+  graph: {
+    nodes: GraphNode[];
+    edges: GraphEdge[];
+  };
 }
 
 export default function GraphViewer({
-graph
+  graph,
 }: Props) {
 
-const nodes =
-graph.nodes.map(
-(node, index) => ({
-id: node.id,
+  const nodes = graph.nodes.map(
+    (node, index) => ({
+      id: node.id,
 
-    position: {
-      x: index * 250,
-      y: 100
-    },
+      position: {
+        x: (index % 4) * 250,
+        y: Math.floor(index / 4) * 150,
+      },
 
-    data: {
-      label: node.label
-    }
-  })
-);
+      data: {
+        label: node.label,
+      },
 
-const edges =
-graph.edges.map(
-edge => ({
-id:
-`${edge.source}-${edge.target}`,
+      type: "default",
+    })
+  );
 
-    source:
-      edge.source,
+  const edges = graph.edges.map(
+    (edge) => ({
+      id: `${edge.source}-${edge.target}`,
 
-    target:
-      edge.target
-  })
-);
+      source: edge.source,
 
-return (
-<div
-style={{
-width: "100%",
-height: "100vh"
-}}
-> <ReactFlow
-     nodes={nodes}
-     edges={edges}
-     fitView
-   > <Background /> <Controls /> </ReactFlow> </div>
-);
+      target: edge.target,
+    })
+  );
+
+  return (
+    <div
+      style={{
+        width: "100%",
+        height: "700px",
+        border: "1px solid #ccc",
+      }}
+    >
+      <ReactFlow
+        nodes={nodes}
+        edges={edges}
+        fitView
+      >
+        <Background />
+        <Controls />
+      </ReactFlow>
+    </div>
+  );
 }
