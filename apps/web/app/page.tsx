@@ -1,15 +1,9 @@
-import GraphViewer from "../components/GraphViewer";
+import ProjectAnalyzer
+from "../components/ProjectAnalyzer";
 
-import { getGraph } from "../services/graphService";
-
-export default async function Home() {
-
-  const graph =
-    await getGraph();
+export default function Home() {
 
   return (
-    <GraphViewer
-      graph={graph}
-    />
+    <ProjectAnalyzer />
   );
 }

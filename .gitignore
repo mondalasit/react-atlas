@@ -56,6 +56,7 @@ Thumbs.db
 tmp/
 temp/
 *.tmp
+temp-projects
 
 # Cache
 
