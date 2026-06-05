@@ -1,14 +1,15 @@
-import GraphViewer
-from "../components/GraphViewer";
+import GraphViewer from "../components/GraphViewer";
 
-import {
-sampleGraph
-} from "../data/sampleGraph";
+import { getGraph } from "../services/graphService";
 
-export default function Home() {
+export default async function Home() {
 
-return ( <GraphViewer
-   graph={sampleGraph}
- />
-);
+  const graph =
+    await getGraph();
+
+  return (
+    <GraphViewer
+      graph={graph}
+    />
+  );
 }
