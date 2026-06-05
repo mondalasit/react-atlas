@@ -1,45 +1,32 @@
 import express from "express";
 import cors from "cors";
 
+import { ProjectAnalyzer }
+from "../../parser-engine/src/services/projectAnalyzer";
+
 const app = express();
 
 app.use(cors());
 
-app.get(
-  "/graph",
-  (_req, res) => {
+app.use(express.json());
 
-    res.json({
-      nodes: [
-        {
-          id: "App",
-          label: "App"
-        },
+const analyzer =
+  new ProjectAnalyzer();
 
-        {
-          id: "Auth",
-          label: "Auth"
-        },
+app.post(
+  "/analyze",
+  (req, res) => {
 
-        {
-          id: "Dashboard",
-          label: "Dashboard"
-        }
-      ],
+    const {
+      projectPath
+    } = req.body;
 
-      edges: [
-        {
-          source: "App",
-          target: "Auth"
-        },
+    const graph =
+      analyzer.analyze(
+        projectPath
+      );
 
-        {
-          source: "App",
-          target: "Dashboard"
-        }
-      ]
-    });
-
+    res.json(graph);
   }
 );
 
