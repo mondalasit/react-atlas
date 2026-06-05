@@ -1,64 +1,211 @@
-# React Atlas
+# React Atlas v1.0
 
-React Atlas is a developer intelligence platform for React applications.
+Visualize, understand, and analyze any React codebase in minutes.
 
-It helps developers understand large and complex React codebases by automatically analyzing source code and generating interactive visualizations of component relationships, application architecture, dependencies, routes, hooks, contexts, and runtime behavior.
+React Atlas transforms React projects into interactive architecture graphs, helping developers understand component relationships, project structure, and application flow without manually tracing files.
 
-React Atlas is designed for developers joining existing projects, teams working on large-scale applications, and engineers who want to quickly understand how a React application is structured without manually exploring hundreds of files.
+---
 
-## Why React Atlas?
+## Features
 
-Understanding an unfamiliar React project can take hours or even days. Developers often need to answer questions such as:
+### Project Analysis
 
-- Which components are connected together?
-- What is the actual component hierarchy?
-- Where does a prop originate?
-- Which contexts are being consumed?
-- Which components re-render most frequently?
-- Are there circular dependencies?
-- What routes exist in the application?
-- Which components are unused?
+* Scan React projects automatically
+* Parse JavaScript and TypeScript React components
+* Detect functional and arrow-function components
+* Extract JSX component relationships
+* Analyze imports and dependencies
+* Build component hierarchy graphs
 
-React Atlas answers these questions through automated static and runtime analysis.
+### Architecture Visualization
 
-## Core Features
+* Interactive graph visualization powered by React Flow
+* Component-to-component relationship mapping
+* Parent-child component hierarchy
+* Architecture exploration through visual graphs
 
-### Project Scanner
-Automatically scans React projects and discovers source files, routes, components, hooks, and contexts.
+### ZIP Upload Analysis
 
-### Component Graph
-Visualize parent-child component relationships through an interactive graph.
+* Upload React projects as ZIP files
+* Automatic extraction and analysis
+* No manual configuration required
+* Instant architecture generation
 
-### Dependency Analysis
-Understand how files, modules, and components depend on one another.
+### API-Driven Architecture
 
-### Route Explorer
-Generate a complete map of application routes and navigation structure.
+* REST API for project analysis
+* Scalable backend architecture
+* Extensible parser engine
 
-### Context & State Analysis
-Track context providers, consumers, and state management patterns.
+---
 
-### Runtime Insights
-Capture real runtime component trees, render counts, and performance metrics.
+## Architecture
 
-### Architecture Reports
-Generate architecture documentation and onboarding reports automatically.
+React Atlas consists of three main parts:
 
-## Planned Features
+```text
+React Project
+      ↓
+Parser Engine
+      ↓
+Graph Builder
+      ↓
+API Server
+      ↓
+Web Interface
+      ↓
+Interactive Architecture Graph
+```
 
-- Component hierarchy visualization
-- Props flow tracking
-- Context flow mapping
-- Route mapping
-- Hook usage analysis
-- Circular dependency detection
-- Dead code detection
-- Render heatmaps
-- Runtime React Fiber analysis
-- AI-powered architecture insights
+### Repository Structure
 
-## Vision
+```text
+react-atlas
+│
+├── apps
+│   └── web
+│
+├── packages
+│   ├── parser-engine
+│   └── api-server
+│
+└── docs
+```
 
-Our goal is to make understanding a React codebase as easy as opening a map.
+---
 
-Upload a project, generate an atlas, and explore your application visually.
+## Tech Stack
+
+Frontend:
+
+* Next.js
+* React
+* TypeScript
+* React Flow
+
+Backend:
+
+* Express.js
+* TypeScript
+* Multer
+* Adm-Zip
+
+Analysis Engine:
+
+* Babel Parser
+* AST Traversal
+* Custom Graph Builder
+
+---
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/YOUR_USERNAME/react-atlas.git
+cd react-atlas
+```
+
+Install dependencies:
+
+```bash
+cd packages/parser-engine
+npm install
+
+cd ../api-server
+npm install
+
+cd ../../apps/web
+npm install
+```
+
+---
+
+## Running React Atlas
+
+### Start API Server
+
+```bash
+cd packages/api-server
+npm run dev
+```
+
+Server:
+
+```text
+http://localhost:4000
+```
+
+### Start Web Application
+
+```bash
+cd apps/web
+npm run dev
+```
+
+Application:
+
+```text
+http://localhost:3000
+```
+
+---
+
+## Usage
+
+1. Open React Atlas
+2. Upload a React project ZIP file
+3. Click Upload & Analyze
+4. Explore the generated architecture graph
+
+---
+
+## Current Capabilities
+
+React Atlas v1.0 can:
+
+* Detect React components
+* Extract JSX component usage
+* Analyze imports
+* Build component graphs
+* Visualize project architecture
+* Process uploaded ZIP projects
+
+---
+
+## Roadmap
+
+### v1.1
+
+* Route Analysis
+* React Router support
+* Next.js App Router support
+
+### v1.2
+
+* Context Analysis
+* Redux Analysis
+* Zustand Analysis
+
+### v1.3
+
+* Hook Dependency Graphs
+* State Flow Visualization
+
+### v2.0
+
+* AI Architecture Insights
+* Architectural Smell Detection
+* Performance Recommendations
+* Refactoring Suggestions
+
+---
+
+## License
+
+MIT License
+
+---
+
+Built with ❤️ using React, TypeScript, AST Analysis, and Graph Visualization.
