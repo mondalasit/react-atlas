@@ -4,10 +4,12 @@ import { ChildComponentExtractor } from "./src/extractors/childComponentExtracto
 import { ImportExtractor } from "./src/extractors/importExtractor";
 import { ComponentTreeAnalyzer } from "./src/analyzers/componentTreeAnalyzer";
 import { parseAST } from "./src/parsers/astParser";
+import { GraphBuilder } from "./src/builders/graphBuilder";
 
 const scanner = new ProjectScanner();
 
-const parser = new ComponentParser();
+const parser =
+  new ComponentParser();
 
 const childExtractor =
   new ChildComponentExtractor();
@@ -17,6 +19,22 @@ const importExtractor =
 
 const analyzer =
   new ComponentTreeAnalyzer();
+
+const graphBuilder =
+  new GraphBuilder();
+
+/**
+
+* Final component relationships
+*
+* Example:
+* {
+* App: ["Auth", "Dashboard"],
+* Dashboard: ["Sidebar"]
+* }
+  */
+const relationships:
+  Record<string, string[]> = {};
 
 const result = scanner.scan(
   "E:/Project/project/frontend"
@@ -31,7 +49,8 @@ for (const file of result.files) {
     continue;
   }
 
-  const ast = parseAST(file);
+  const ast =
+    parseAST(file);
 
   const childrenMap =
     childExtractor.extract(ast);
@@ -79,15 +98,45 @@ for (const file of result.files) {
     ] of childrenMap
   ) {
 
-    const realChildren =
-      analyzer.build(
-        children,
-        imports
-      );
+const realChildren =
+  analyzer.build(
+    children,
+    imports
+  );
 
-    console.log(
-      `${componentName} ->`,
-      realChildren
-    );
+relationships[
+  componentName
+] = realChildren;
+
+console.log(
+  `${ componentName } -> `,
+  realChildren
+);
+
   }
 }
+
+/**
+
+* Build graph from all relationships
+  */
+const graph =
+  graphBuilder.build(
+    relationships
+  );
+
+console.log(
+  "\n======================================"
+);
+
+console.log(
+  "GRAPH JSON"
+);
+
+console.log(
+  JSON.stringify(
+    graph,
+    null,
+    2
+  )
+);
