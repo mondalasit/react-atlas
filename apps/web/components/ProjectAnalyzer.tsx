@@ -1,26 +1,65 @@
 "use client";
 
 import { useState } from "react";
+
 import GraphViewer from "./GraphViewer";
+
+interface GraphNode {
+  id: string;
+  label: string;
+}
+
+interface GraphEdge {
+  source: string;
+  target: string;
+}
+
+interface AnalysisResult {
+  graph: {
+    nodes: GraphNode[];
+    edges: GraphEdge[];
+  };
+
+  components?: any[];
+}
 
 export default function ProjectAnalyzer() {
 
-  const [projectPath, setProjectPath] =
-    useState("");
+  const [
+    projectPath,
+    setProjectPath
+  ] = useState("");
 
-  const [graph, setGraph] =
-    useState<any>(null);
+  const [
+    analysis,
+    setAnalysis
+  ] = useState<AnalysisResult | null>(
+    null
+  );
 
-  const [loading, setLoading] =
-    useState(false);
+  const [
+    loading,
+    setLoading
+  ] = useState(false);
+
+  const [
+    error,
+    setError
+  ] = useState("");
 
   async function analyze() {
 
     if (!projectPath.trim()) {
+
+      setError(
+        "Please enter a project path."
+      );
+
       return;
     }
 
     setLoading(true);
+    setError("");
 
     try {
 
@@ -44,11 +83,31 @@ export default function ProjectAnalyzer() {
       const result =
         await response.json();
 
-      setGraph(result);
+      console.log(
+        "Analysis Result:",
+        result
+      );
 
-    } catch (error) {
+      if (!response.ok) {
 
-      console.error(error);
+        throw new Error(
+          result.error ||
+          "Analysis failed"
+        );
+
+      }
+
+      setAnalysis(result);
+
+    } catch (err) {
+
+      console.error(err);
+
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Unknown error"
+      );
 
     } finally {
 
@@ -59,33 +118,57 @@ export default function ProjectAnalyzer() {
 
   return (
     <div
-      className="p-4"
+      style={{
+        padding: "20px",
+      }}
     >
-      <div
-        className="flex gap-2 mb-4"
+
+      <h1
+        style={{
+          fontSize: "32px",
+          fontWeight: "bold",
+          marginBottom: "20px",
+        }}
       >
+        React Atlas v1.1
+      </h1>
+
+      <div
+        style={{
+          display: "flex",
+          gap: "10px",
+          marginBottom: "20px",
+        }}
+      >
+
         <input
           type="text"
           value={projectPath}
-          onChange={e =>
+          onChange={(e) =>
             setProjectPath(
               e.target.value
             )
           }
           placeholder="Enter React project path"
-          className="
-            border
-            p-2
-            flex-1
-          "
+          style={{
+            flex: 1,
+            padding: "10px",
+            border:
+              "1px solid #ccc",
+          }}
         />
 
         <button
           onClick={analyze}
-          className="
-            border
-            px-4
-          "
+          disabled={loading}
+          style={{
+            padding:
+              "10px 20px",
+            cursor:
+              loading
+                ? "not-allowed"
+                : "pointer",
+          }}
         >
           {
             loading
@@ -93,16 +176,33 @@ export default function ProjectAnalyzer() {
               : "Analyze"
           }
         </button>
+
       </div>
 
       {
-        graph &&
-        (
+        error && (
+          <div
+            style={{
+              color: "red",
+              marginBottom: "20px",
+            }}
+          >
+            {error}
+          </div>
+        )
+      }
+
+      {
+        analysis?.graph && (
           <GraphViewer
-            graph={graph}
+            graph={analysis.graph}
+            components={
+              analysis.components || []
+            }
           />
         )
       }
+
     </div>
   );
 }

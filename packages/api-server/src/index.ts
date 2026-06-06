@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 
 import { ProjectAnalyzer }
-from "../../parser-engine/src/services/projectAnalyzer";
+  from "../../parser-engine/src/services/projectAnalyzer";
 import uploadRoute from "./routes/upload";
 
 const app = express();
@@ -33,12 +33,12 @@ app.post(
         });
     }
 
-    const graph =
+    const result =
       analyzer.analyze(
         projectPath
       );
 
-    res.json(graph);
+    res.json(result);
   }
 );
 

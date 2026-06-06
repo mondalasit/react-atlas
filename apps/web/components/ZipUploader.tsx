@@ -18,12 +18,28 @@ interface GraphData {
   edges: GraphEdge[];
 }
 
+interface ComponentInfo {
+  id: string;
+  name: string;
+  filePath: string;
+  imports: string[];
+  children: string[];
+}
+
+interface AnalysisResult {
+  graph: GraphData;
+  components: ComponentInfo[];
+}
+
 export default function ZipUploader() {
+
   const [file, setFile] =
     useState<File | null>(null);
 
-  const [graph, setGraph] =
-    useState<GraphData | null>(null);
+  const [analysis, setAnalysis] =
+    useState<AnalysisResult | null>(
+      null
+    );
 
   const [loading, setLoading] =
     useState(false);
@@ -32,17 +48,22 @@ export default function ZipUploader() {
     useState("");
 
   async function upload() {
+
     if (!file) {
+
       setError(
         "Please select a ZIP file."
       );
+
       return;
+
     }
 
     setLoading(true);
     setError("");
 
     try {
+
       const formData =
         new FormData();
 
@@ -64,31 +85,44 @@ export default function ZipUploader() {
         await response.json();
 
       console.log(
-        "Upload Result:",
+        "UPLOAD RESPONSE:",
         result
       );
 
       if (!response.ok) {
+
         throw new Error(
           result.error ||
-            "Upload failed"
+          "Upload failed"
         );
+
       }
 
       if (
         result.graph &&
-        result.graph.nodes &&
-        result.graph.edges
+        result.components
       ) {
-        setGraph(
-          result.graph
-        );
+
+        setAnalysis({
+
+          graph:
+            result.graph,
+
+          components:
+            result.components,
+
+        });
+
       } else {
+
         throw new Error(
-          "Invalid graph data received"
+          "Invalid analysis data received"
         );
+
       }
+
     } catch (err) {
+
       console.error(err);
 
       setError(
@@ -96,9 +130,13 @@ export default function ZipUploader() {
           ? err.message
           : "Unknown error"
       );
+
     } finally {
+
       setLoading(false);
+
     }
+
   }
 
   return (
@@ -108,6 +146,7 @@ export default function ZipUploader() {
         minHeight: "100vh",
       }}
     >
+
       <h1
         style={{
           fontSize: "32px",
@@ -115,7 +154,7 @@ export default function ZipUploader() {
           marginBottom: "20px",
         }}
       >
-        React Atlas
+        React Atlas v1.1
       </h1>
 
       <div
@@ -126,16 +165,23 @@ export default function ZipUploader() {
           marginBottom: "20px",
         }}
       >
+
         <input
           type="file"
           accept=".zip"
           onChange={(e) => {
+
             const selected =
               e.target.files?.[0];
 
             if (selected) {
-              setFile(selected);
+
+              setFile(
+                selected
+              );
+
             }
+
           }}
         />
 
@@ -145,28 +191,40 @@ export default function ZipUploader() {
           style={{
             padding:
               "8px 16px",
-            cursor: loading
-              ? "not-allowed"
-              : "pointer",
+
+            cursor:
+              loading
+                ? "not-allowed"
+                : "pointer",
           }}
         >
-          {loading
-            ? "Analyzing..."
-            : "Upload & Analyze"}
+          {
+            loading
+              ? "Analyzing..."
+              : "Upload & Analyze"
+          }
         </button>
+
       </div>
 
       {file && (
+
         <p>
+
           Selected File:
+
           {" "}
+
           <strong>
             {file.name}
           </strong>
+
         </p>
+
       )}
 
       {error && (
+
         <div
           style={{
             color: "red",
@@ -176,9 +234,11 @@ export default function ZipUploader() {
         >
           {error}
         </div>
+
       )}
 
-      {graph && (
+      {analysis && (
+
         <>
           <h2
             style={{
@@ -190,10 +250,18 @@ export default function ZipUploader() {
           </h2>
 
           <GraphViewer
-            graph={graph}
+            graph={
+              analysis.graph
+            }
+            components={
+              analysis.components
+            }
           />
+
         </>
+
       )}
+
     </div>
   );
 }

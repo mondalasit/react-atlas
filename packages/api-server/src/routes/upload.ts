@@ -30,7 +30,7 @@ router.post(
                 req.file.path
             );
 
-        const graph =
+        const result =
             analyzer.analyze(
                 extractedPath
             );
@@ -43,7 +43,11 @@ router.post(
 
             extractedPath,
 
-            graph
+            graph:
+                result.graph,
+
+            components:
+                result.components
         });
     }
 );

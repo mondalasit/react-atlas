@@ -6,7 +6,10 @@ import { ComponentTreeAnalyzer } from "../analyzers/componentTreeAnalyzer";
 import { GraphBuilder } from "../builders/graphBuilder";
 import { parseAST } from "../parsers/astParser";
 
-import { Graph } from "../types/Graph";
+import {
+  AnalysisResult,
+  ComponentDetails
+} from "../types/AnalysisResult";
 
 export class ProjectAnalyzer {
 
@@ -30,10 +33,13 @@ export class ProjectAnalyzer {
 
   public analyze(
     projectPath: string
-  ): Graph {
+  ): AnalysisResult {
 
     const relationships:
       Record<string, string[]> = {};
+
+    const components:
+      ComponentDetails[] = [];
 
     const scanResult =
       this.scanner.scan(
@@ -45,13 +51,13 @@ export class ProjectAnalyzer {
       of scanResult.files
     ) {
 
-      const components =
+      const parsedComponents =
         this.parser.parseFile(
           file
         );
 
       if (
-        components.length === 0
+        parsedComponents.length === 0
       ) {
         continue;
       }
@@ -70,11 +76,14 @@ export class ProjectAnalyzer {
         );
 
       for (
-        const [
-          componentName,
-          children
-        ] of childrenMap
+        const component
+        of parsedComponents
       ) {
+
+        const children =
+          childrenMap.get(
+            component.name
+          ) || [];
 
         const realChildren =
           this.componentTreeAnalyzer.build(
@@ -83,13 +92,47 @@ export class ProjectAnalyzer {
           );
 
         relationships[
-          componentName
+          component.name
         ] = realChildren;
+
+        components.push({
+
+          id:
+            component.id,
+
+          name:
+            component.name,
+
+          filePath:
+            component.filePath,
+
+          imports:
+            imports.map(
+              item =>
+                item.componentName
+            ),
+
+          children:
+            realChildren
+
+        });
+
       }
+
     }
 
-    return this.graphBuilder.build(
-      relationships
-    );
+    const graph =
+      this.graphBuilder.build(
+        relationships
+      );
+
+    return {
+
+      graph,
+
+      components
+
+    };
   }
+
 }
