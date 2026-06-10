@@ -1,13 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import ReactFlow, {
   Background,
   Controls,
+  MiniMap,
 } from "reactflow";
 
 import ComponentDetails from "./ComponentDetails";
+import SearchBar from "./SearchBar";
+import GraphStats from "./GraphStats";
 
 import "reactflow/dist/style.css";
 
@@ -50,35 +53,179 @@ export default function GraphViewer({
     null
   );
 
-  const nodes =
-    graph.nodes.map(
-      (node, index) => ({
+  const [
+    selectedNodeId,
+    setSelectedNodeId
+  ] = useState<string | null>(
+    null
+  );
 
-        id: node.id,
+  const [
+    search,
+    setSearch
+  ] = useState("");
 
-        position: {
-          x: (index % 4) * 250,
-          y:
-            Math.floor(
-              index / 4
-            ) * 150,
-        },
+  function selectComponent(
+    componentName: string
+  ) {
 
-        data: {
-          label: node.label,
-        },
 
-        type: "default",
+    const details =
+      components.find(
+        component =>
+          component.name ===
+          componentName
+      );
 
-      })
+    if (details) {
+
+      setSelectedComponent(
+        details
+      );
+
+      setSelectedNodeId(
+        details.id
+      );
+
+    }
+
+
+  }
+
+  useEffect(() => {
+
+    if (!search.trim()) {
+      return;
+    }
+
+    const match =
+      components.find(
+        component =>
+          component.name
+            .toLowerCase()
+            .includes(
+              search.toLowerCase()
+            )
+      );
+
+    if (match) {
+
+      setSelectedComponent(
+        match
+      );
+
+      setSelectedNodeId(
+        match.id
+      );
+
+    }
+
+  }, [
+    search,
+    components
+  ]);
+
+  const filteredNodes =
+    graph.nodes.filter(
+      node =>
+        node.label
+          .toLowerCase()
+          .includes(
+            search.toLowerCase()
+          )
     );
 
-  const edges =
-    graph.edges.map(
-      (edge) => ({
+  const visibleNodeIds =
+    new Set(
+      filteredNodes.map(
+        node => node.id
+      )
+    );
+
+  const nodes =
+    filteredNodes.map(
+      (node, index) => {
+
+        const selected =
+          selectedNodeId === node.id;
+
+        return {
+
+          id: node.id,
+
+          position: {
+            x:
+              (index % 4) * 260,
+            y:
+              Math.floor(
+                index / 4
+              ) * 180,
+          },
+
+          data: {
+            label: node.label,
+          },
+
+          style: {
+
+            background:
+              selected
+                ? "#2563eb"
+                : "#0f172a",
+
+            color: "#ffffff",
+
+            border:
+              selected
+                ? "2px solid #60a5fa"
+                : "1px solid #334155",
+
+            borderRadius:
+              "14px",
+
+            width: 180,
+
+            padding: "12px",
+
+            fontWeight: 600,
+
+            boxShadow:
+              selected
+                ? "0 0 25px rgba(59,130,246,0.7)"
+                : "none",
+
+          },
+
+        };
+
+      }
+    );
+
+
+const edges =
+graph.edges
+.filter(
+edge =>
+visibleNodeIds.has(
+edge.source
+) &&
+visibleNodeIds.has(
+edge.target
+)
+)
+.map(
+edge => {
+
+      const highlighted =
+        selectedNodeId ===
+          edge.source ||
+        selectedNodeId ===
+          edge.target;
+
+      return {
 
         id:
-          `${edge.source}-${edge.target}`,
+          `${ edge.source } -${ edge.target } `,
 
         source:
           edge.source,
@@ -86,81 +233,295 @@ export default function GraphViewer({
         target:
           edge.target,
 
-      })
-    );
+        animated:
+          highlighted,
 
-  return (
+        style: {
+
+          stroke:
+            highlighted
+              ? "#3b82f6"
+              : "#475569",
+
+          strokeWidth:
+            highlighted
+              ? 3
+              : 1.5,
+
+        },
+
+      };
+
+    }
+  );
+
+const healthScore =
+Math.max(
+70,
+100 -
+Math.floor(
+graph.edges.length / 10
+)
+);
+
+return (
+
+<div
+  className="
+    flex
+    h-screen
+    w-full
+    bg-slate-950
+    text-white
+    overflow-hidden
+  "
+>
+
+  {/* LEFT SIDE */}
+
+  <div
+    className="
+      flex
+      flex-col
+      flex-1
+      p-6
+      gap-4
+    "
+  >
+
+    {/* HEADER */}
+
     <div
-      style={{
-        display: "flex",
-        width: "100%",
-        height: "800px",
-        border: "1px solid #ccc",
-      }}
+      className="
+        flex
+        items-center
+        justify-between
+        rounded-2xl
+        border
+        border-slate-800
+        bg-slate-900
+        p-5
+        shadow-lg
+      "
     >
 
-      <div
-        style={{
-          flex: 3,
-        }}
-      >
+      <div>
 
-        <ReactFlow
-          nodes={nodes}
-          edges={edges}
-          fitView
-
-          onNodeClick={(
-            _,
-            node
-          ) => {
-
-            const details =
-              components.find(
-                component =>
-                  component.name ===
-                  node.id
-              );
-
-            if (details) {
-
-              setSelectedComponent(
-                details
-              );
-
-            }
-
-          }}
+        <h1
+          className="
+            text-3xl
+            font-bold
+          "
         >
+          ⚛ React Atlas
+        </h1>
 
-          <Background />
-
-          <Controls />
-
-        </ReactFlow>
+        <p
+          className="
+            text-slate-400
+            text-sm
+            mt-1
+          "
+        >
+          Component Intelligence Platform
+        </p>
 
       </div>
 
       <div
-        style={{
-          flex: 1,
-          minWidth: "350px",
-          background:
-            "#fafafa",
-          borderLeft:
-            "1px solid #ddd",
-          overflow: "auto",
-        }}
+        className="
+          bg-blue-600
+          px-4
+          py-2
+          rounded-lg
+          font-semibold
+        "
       >
-
-        <ComponentDetails
-          component={
-            selectedComponent
-          }
-        />
-
+        v1.1
       </div>
 
     </div>
-  );
+
+    {/* SEARCH */}
+
+    <div
+      className="
+        rounded-2xl
+        border
+        border-slate-800
+        bg-slate-900
+        p-4
+      "
+    >
+      <SearchBar
+        value={search}
+        onChange={setSearch}
+      />
+    </div>
+
+    {/* STATS */}
+
+    <GraphStats
+      nodeCount={
+        graph.nodes.length
+      }
+      edgeCount={
+        graph.edges.length
+      }
+    />
+
+    {/* GRAPH */}
+
+    <div
+      className="
+        flex-1
+        rounded-2xl
+        overflow-hidden
+        border
+        border-slate-800
+        bg-slate-900
+        shadow-xl
+      "
+    >
+
+      <ReactFlow
+        nodes={nodes}
+        edges={edges}
+        fitView
+        onNodeClick={(
+          _,
+          node
+        ) => {
+
+          setSelectedNodeId(
+            node.id
+          );
+
+          selectComponent(
+            node.id
+          );
+
+        }}
+      >
+
+        <MiniMap
+          zoomable
+          pannable
+        />
+
+        <Controls />
+
+        <Background
+          gap={20}
+          size={1}
+        />
+
+      </ReactFlow>
+
+    </div>
+
+  </div>
+
+  {/* RIGHT SIDEBAR */}
+
+  <div
+    className="
+      w-[420px]
+      bg-slate-900
+      border-l
+      border-slate-800
+      overflow-auto
+    "
+  >
+
+    <div
+      className="
+        sticky
+        top-0
+        bg-slate-900
+        border-b
+        border-slate-800
+        p-5
+        z-10
+      "
+    >
+
+      <h2
+        className="
+          text-lg
+          font-semibold
+        "
+      >
+        Architecture Insights
+      </h2>
+
+      <p
+        className="
+          text-slate-400
+          text-xs
+          mt-1
+        "
+      >
+        Analyze relationships and dependencies
+      </p>
+
+    </div>
+
+    <div className="p-4">
+
+      <div
+        className="
+          bg-slate-950
+          border
+          border-slate-800
+          rounded-2xl
+          p-4
+          mb-4
+        "
+      >
+
+        <div className="space-y-3">
+
+          <div className="flex justify-between">
+            <span>Components</span>
+            <span>
+              {graph.nodes.length}
+            </span>
+          </div>
+
+          <div className="flex justify-between">
+            <span>Relations</span>
+            <span>
+              {graph.edges.length}
+            </span>
+          </div>
+
+          <div className="flex justify-between">
+            <span>Health Score</span>
+            <span className="text-green-400">
+              {healthScore}%
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <ComponentDetails
+        component={
+          selectedComponent
+        }
+        onNavigate={
+          selectComponent
+        }
+      />
+
+    </div>
+
+  </div>
+
+</div>
+
+);
+
 }
