@@ -1,14 +1,49 @@
-# React Atlas v1.0
+# React Atlas v1.1
+
+### Component Intelligence Release
 
 Visualize, understand, and analyze any React codebase in minutes.
 
-React Atlas transforms React projects into interactive architecture graphs, helping developers understand component relationships, project structure, and application flow without manually tracing files.
+React Atlas transforms React projects into interactive architecture graphs, helping developers explore component relationships, dependencies, and application structure without manually tracing files.
 
 ---
 
-## Features
+## What's New in v1.1
 
-### Project Analysis
+### Component Intelligence
+
+React Atlas now provides detailed component inspection capabilities.
+
+Features:
+
+* Component Details Panel
+* Component Search
+* Dependency Navigation
+* Import Analysis
+* Child Component Analysis
+* Architecture Insights
+
+### Enhanced User Experience
+
+* Premium dark theme
+* Modern dashboard interface
+* Architecture insights sidebar
+* Graph statistics cards
+* Improved graph exploration
+* Interactive MiniMap
+* Enhanced component navigation
+
+### Export Support
+
+* Export architecture data as JSON
+* Share and archive analysis results
+* Foundation for future integrations
+
+---
+
+# Features
+
+## Project Analysis
 
 * Scan React projects automatically
 * Parse JavaScript and TypeScript React components
@@ -17,29 +52,77 @@ React Atlas transforms React projects into interactive architecture graphs, help
 * Analyze imports and dependencies
 * Build component hierarchy graphs
 
-### Architecture Visualization
+---
+
+## Architecture Visualization
 
 * Interactive graph visualization powered by React Flow
 * Component-to-component relationship mapping
 * Parent-child component hierarchy
-* Architecture exploration through visual graphs
+* Searchable architecture graph
+* Node highlighting
+* Dependency exploration
+* Interactive MiniMap
 
-### ZIP Upload Analysis
+---
+
+## Component Intelligence
+
+Inspect any component in the architecture.
+
+Displays:
+
+* Component Name
+* File Path
+* Imported Components
+* Child Components
+* Relationship Navigation
+
+Developers can navigate architecture directly through component relationships.
+
+---
+
+## Architecture Insights
+
+React Atlas provides project-level insights including:
+
+* Total Components
+* Total Relationships
+* Architecture Health Score
+* Project Overview Metrics
+
+---
+
+## ZIP Upload Analysis
 
 * Upload React projects as ZIP files
 * Automatic extraction and analysis
 * No manual configuration required
 * Instant architecture generation
 
-### API-Driven Architecture
+---
+
+## Export Architecture Data
+
+Export architecture analysis results:
+
+* JSON Export
+* Graph Data
+* Component Metadata
+* Architecture Metrics
+
+---
+
+## API-Driven Architecture
 
 * REST API for project analysis
 * Scalable backend architecture
 * Extensible parser engine
+* Frontend-backend separation
 
 ---
 
-## Architecture
+# Architecture
 
 React Atlas consists of three main parts:
 
@@ -54,10 +137,14 @@ API Server
       ↓
 Web Interface
       ↓
+Component Intelligence
+      ↓
 Interactive Architecture Graph
 ```
 
-### Repository Structure
+---
+
+# Repository Structure
 
 ```text
 react-atlas
@@ -70,27 +157,30 @@ react-atlas
 │   └── api-server
 │
 └── docs
+    ├── getting-started.md
+    └── releases
 ```
 
 ---
 
-## Tech Stack
+# Tech Stack
 
-Frontend:
+## Frontend
 
 * Next.js
 * React
 * TypeScript
 * React Flow
+* Tailwind CSS
 
-Backend:
+## Backend
 
 * Express.js
 * TypeScript
 * Multer
 * Adm-Zip
 
-Analysis Engine:
+## Analysis Engine
 
 * Babel Parser
 * AST Traversal
@@ -98,7 +188,7 @@ Analysis Engine:
 
 ---
 
-## Installation
+# Installation
 
 Clone the repository:
 
@@ -122,9 +212,9 @@ npm install
 
 ---
 
-## Running React Atlas
+# Running React Atlas
 
-### Start API Server
+## Start API Server
 
 ```bash
 cd packages/api-server
@@ -137,7 +227,7 @@ Server:
 http://localhost:4000
 ```
 
-### Start Web Application
+## Start Web Application
 
 ```bash
 cd apps/web
@@ -152,57 +242,124 @@ http://localhost:3000
 
 ---
 
-## Usage
+# Usage
 
 1. Open React Atlas
 2. Upload a React project ZIP file
 3. Click Upload & Analyze
 4. Explore the generated architecture graph
+5. Search for components
+6. Inspect component intelligence details
+7. Navigate dependencies
+8. Export architecture data
 
 ---
 
-## Current Capabilities
+# Current Capabilities
 
-React Atlas v1.0 can:
+React Atlas v1.1 can:
+
+### Analysis
 
 * Detect React components
 * Extract JSX component usage
 * Analyze imports
 * Build component graphs
-* Visualize project architecture
 * Process uploaded ZIP projects
+
+### Visualization
+
+* Interactive architecture graph
+* Searchable graph navigation
+* Component relationship mapping
+* MiniMap navigation
+* Dependency exploration
+
+### Intelligence
+
+* Component Details Panel
+* Import Analysis
+* Child Component Analysis
+* Architecture Metrics
+* Health Score
+* Architecture Insights
+
+### Export
+
+* JSON Export Support
 
 ---
 
-## Roadmap
+# Roadmap
 
-### v1.1
+## v1.2 — Route Intelligence
 
-* Route Analysis
-* React Router support
-* Next.js App Router support
+Planned:
 
-### v1.2
+* Next.js Route Detection
+* App Router Analysis
+* Route Graph Visualization
+* Dynamic Route Analysis
+* Navigation Flow Mapping
+
+---
+
+## v1.3 — State Intelligence
+
+Planned:
 
 * Context Analysis
 * Redux Analysis
 * Zustand Analysis
-
-### v1.3
-
-* Hook Dependency Graphs
 * State Flow Visualization
-
-### v2.0
-
-* AI Architecture Insights
-* Architectural Smell Detection
-* Performance Recommendations
-* Refactoring Suggestions
 
 ---
 
-## License
+## v1.4 — Hook Intelligence
+
+Planned:
+
+* Custom Hook Detection
+* Hook Dependency Analysis
+* Hook Usage Visualization
+
+---
+
+## v2.0 — AI Architecture Assistant
+
+Planned:
+
+* Architecture Explanations
+* Refactoring Suggestions
+* Dependency Insights
+* Architectural Smell Detection
+* Performance Recommendations
+
+---
+
+# Release Information
+
+Current Release:
+
+```text
+v1.1.0
+```
+
+Codename:
+
+```text
+Component Intelligence
+```
+
+Status:
+
+```text
+Stable Release
+```
+
+---
+
+# License
 
 MIT License
 
