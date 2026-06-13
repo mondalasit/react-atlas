@@ -6,6 +6,7 @@ import ExportButton from "./ExportButton";
 import ArchitectureInsights from "./ArchitectureInsights";
 import HealthScoreCard from "./HealthScoreCard";
 import CircularDependencies from "./CircularDependencies";
+import ProjectSummaryDashboard from "./ProjectSummaryDashboard";
 
 interface GraphNode {
   id: string;
@@ -124,41 +125,41 @@ export default function ZipUploader() {
 
   const [error, setError] =
     useState("");
-function handleAnalysisResult(
-  result: any
-) {
+  function handleAnalysisResult(
+    result: any
+  ) {
 
-  setAnalysis({
+    setAnalysis({
 
-    graph:
-      result.graph,
+      graph:
+        result.graph,
 
-    components:
-      result.components,
+      components:
+        result.components,
 
-    routes:
-      result.routes ?? [],
+      routes:
+        result.routes ?? [],
 
-    routeGraph:
-      result.routeGraph ?? {
-        nodes: [],
-        edges: [],
-      },
+      routeGraph:
+        result.routeGraph ?? {
+          nodes: [],
+          edges: [],
+        },
 
-    insights:
-      result.insights ?? {
-        rootComponents: [],
-        leafComponents: [],
-        deadComponents: [],
-        mostImported: [],
-      },
+      insights:
+        result.insights ?? {
+          rootComponents: [],
+          leafComponents: [],
+          deadComponents: [],
+          mostImported: [],
+        },
 
-    circularDependencies:
-      result.circularDependencies ?? [],
+      circularDependencies:
+        result.circularDependencies ?? [],
 
-  });
+    });
 
-}
+  }
   async function upload() {
 
     if (!file) {
@@ -615,6 +616,29 @@ function handleAnalysisResult(
         {analysis && (
 
           <div className="mt-10">
+            <ProjectSummaryDashboard
+              totalComponents={
+                analysis.components.length
+              }
+              totalRelationships={
+                analysis.graph.edges.length
+              }
+              rootComponents={
+                analysis.insights.rootComponents.length
+              }
+              leafComponents={
+                analysis.insights.leafComponents.length
+              }
+              deadComponents={
+                analysis.insights.deadComponents.length
+              }
+              circularDependencies={
+                analysis.circularDependencies.length
+              }
+              healthScore={
+                analysis.insights.healthScore.score
+              }
+            />
 
             <HealthScoreCard
               score={
