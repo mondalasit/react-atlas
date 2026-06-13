@@ -11,6 +11,7 @@ import { RouteExtractor } from "../routes/routeExtractor";
 import { RouteGraphBuilder } from "../routes/routeGraphBuilder";
 import { AnalysisResult } from "../types/AnalysisResult";
 import { ComponentDetails } from "../types/ComponentDetails";
+import { CircularDependencyAnalyzer } from "../analyzers/circularDependencyAnalyzer";
 
 export class ProjectAnalyzer {
 
@@ -42,6 +43,9 @@ export class ProjectAnalyzer {
 
   private routeGraphBuilder =
     new RouteGraphBuilder();
+
+  private circularDependencyAnalyzer =
+    new CircularDependencyAnalyzer();
 
   public analyze(
     projectPath: string
@@ -142,7 +146,11 @@ export class ProjectAnalyzer {
       this.insightsBuilder.build(
         graph
       );
-
+    const circularDependencies =
+      this.circularDependencyAnalyzer
+        .analyze(
+          graph.edges
+        );
     /*
      * Route Intelligence
      */
@@ -174,6 +182,8 @@ export class ProjectAnalyzer {
       routeGraph,
 
       insights,
+
+      circularDependencies,
 
     };
   }

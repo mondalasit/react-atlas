@@ -1,9 +1,9 @@
 import express from "express";
 import cors from "cors";
 
-import { ProjectAnalyzer }
-  from "../../parser-engine/src/services/projectAnalyzer";
+import { ProjectAnalyzer } from "../../parser-engine/src/services/projectAnalyzer";
 import uploadRoute from "./routes/upload";
+import githubRoute from "./routes/github";
 
 const app = express();
 
@@ -11,6 +11,7 @@ app.use(cors());
 
 app.use(express.json());
 app.use(uploadRoute);
+app.use(githubRoute);
 
 const analyzer =
   new ProjectAnalyzer();

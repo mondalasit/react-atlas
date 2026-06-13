@@ -20,4 +20,7 @@ export interface AnalysisResult {
     insights:
         ArchitectureInsights;
 
+    circularDependencies:
+        string[][];
+
 }

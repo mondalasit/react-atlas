@@ -49,42 +49,45 @@ router.post(
 
             return res.json({
 
-                success: true,
+    success: true,
 
-                originalName:
-                    req.file.originalname,
+    originalName:
+        req.file.originalname,
 
-                extractedPath,
+    extractedPath,
 
-                graph:
-                    result.graph,
+    graph:
+        result.graph,
 
-                components:
-                    result.components,
+    components:
+        result.components,
 
-                routes:
-                    result.routes ?? [],
+    routes:
+        result.routes ?? [],
 
-                routeGraph:
-                    result.routeGraph ?? {
-                        nodes: [],
-                        edges: [],
-                    },
+    routeGraph:
+        result.routeGraph ?? {
+            nodes: [],
+            edges: [],
+        },
 
-                insights:
-                    result.insights ?? {
+    insights:
+        result.insights ?? {
 
-                        rootComponents: [],
+            rootComponents: [],
 
-                        leafComponents: [],
+            leafComponents: [],
 
-                        deadComponents: [],
+            deadComponents: [],
 
-                        mostImported: [],
+            mostImported: [],
 
-                    },
+        },
 
-            });
+    circularDependencies:
+        result.circularDependencies ?? [],
+
+});
 
         } catch (error) {
 

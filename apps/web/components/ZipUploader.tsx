@@ -5,6 +5,7 @@ import GraphViewer from "./GraphViewer";
 import ExportButton from "./ExportButton";
 import ArchitectureInsights from "./ArchitectureInsights";
 import HealthScoreCard from "./HealthScoreCard";
+import CircularDependencies from "./CircularDependencies";
 
 interface GraphNode {
   id: string;
@@ -100,6 +101,9 @@ interface AnalysisResult {
   insights:
   ArchitectureInsightsData;
 
+  circularDependencies:
+  string[][];
+
 }
 export default function ZipUploader() {
 
@@ -154,7 +158,7 @@ export default function ZipUploader() {
       const result =
         await response.json();
 
-     console.log(result.insights);
+      console.log(result.insights);
 
       if (!response.ok) {
 
@@ -189,16 +193,14 @@ export default function ZipUploader() {
 
           insights:
             result.insights ?? {
-
               rootComponents: [],
-
               leafComponents: [],
-
               deadComponents: [],
-
               mostImported: [],
-
             },
+
+          circularDependencies:
+            result.circularDependencies ?? [],
 
         });
 
@@ -499,7 +501,11 @@ export default function ZipUploader() {
                 analysis.insights
               }
             />
-
+            <CircularDependencies
+              cycles={
+                analysis.circularDependencies
+              }
+            />
             <div className="flex items-center justify-between mb-4">
 
               <h2 className="text-2xl font-semibold">

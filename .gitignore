@@ -61,6 +61,8 @@ packages/api-server/uploads/
 
 # Temporary extracted projects
 packages/api-server/temp-projects/
+packages/api-server/repositories/
+packages/api-server/repos/
 
 # Cache
 
