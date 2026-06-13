@@ -1,21 +1,47 @@
-import fs from "fs";
+import { ArchitectureInsightsBuilder }
+from "./src/services/architectureInsights";
 
-import { parseAST }
-from "./src/parsers/astParser";
+const insightsBuilder =
+    new ArchitectureInsightsBuilder();
 
-import { RouteExtractor }
-from "./src/extractors/routeExtractor";
+const graph = {
 
-const file =
-  "E:/Project/project/frontend/src/App.js";
+    nodes: [
 
-const ast =
-  parseAST(file);
+        { id: "App", label: "App" },
 
-const extractor =
-  new RouteExtractor();
+        { id: "Auth", label: "Auth" },
 
-const routes =
-  extractor.extract(ast);
+        { id: "Sidebar", label: "Sidebar" },
 
-console.log(routes);
+        { id: "Track", label: "Track" },
+
+    ],
+
+    edges: [
+
+        {
+            source: "App",
+            target: "Auth",
+        },
+
+        {
+            source: "Auth",
+            target: "Sidebar",
+        },
+
+        {
+            source: "Auth",
+            target: "Track",
+        },
+
+    ],
+
+};
+
+const insights =
+    insightsBuilder.build(
+        graph
+    );
+
+console.log(insights);

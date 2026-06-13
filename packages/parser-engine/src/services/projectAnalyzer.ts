@@ -5,11 +5,12 @@ import { ImportExtractor } from "../extractors/importExtractor";
 import { ComponentTreeAnalyzer } from "../analyzers/componentTreeAnalyzer";
 import { GraphBuilder } from "../builders/graphBuilder";
 import { parseAST } from "../parsers/astParser";
-
-import {
-  AnalysisResult,
-  ComponentDetails
-} from "../types/AnalysisResult";
+import { ArchitectureInsightsBuilder } from "./architectureInsights";
+import { RouteScanner } from "../routes/routeScanner";
+import { RouteExtractor } from "../routes/routeExtractor";
+import { RouteGraphBuilder } from "../routes/routeGraphBuilder";
+import { AnalysisResult } from "../types/AnalysisResult";
+import { ComponentDetails } from "../types/ComponentDetails";
 
 export class ProjectAnalyzer {
 
@@ -30,6 +31,17 @@ export class ProjectAnalyzer {
 
   private graphBuilder =
     new GraphBuilder();
+  private insightsBuilder =
+    new ArchitectureInsightsBuilder();
+
+  private routeScanner =
+    new RouteScanner();
+
+  private routeExtractor =
+    new RouteExtractor();
+
+  private routeGraphBuilder =
+    new RouteGraphBuilder();
 
   public analyze(
     projectPath: string
@@ -126,11 +138,42 @@ export class ProjectAnalyzer {
         relationships
       );
 
+    const insights =
+      this.insightsBuilder.build(
+        graph
+      );
+
+    /*
+     * Route Intelligence
+     */
+
+    const routeFiles =
+      this.routeScanner.scan(
+        projectPath
+      );
+
+    const routes =
+      this.routeExtractor.extract(
+        routeFiles,
+        projectPath
+      );
+
+    const routeGraph =
+      this.routeGraphBuilder.build(
+        routes
+      );
+
     return {
 
       graph,
 
-      components
+      components,
+
+      routes,
+
+      routeGraph,
+
+      insights,
 
     };
   }

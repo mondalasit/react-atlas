@@ -3,6 +3,7 @@
 import { useState } from "react";
 import GraphViewer from "./GraphViewer";
 import ExportButton from "./ExportButton";
+import ArchitectureInsights from "./ArchitectureInsights";
 
 interface GraphNode {
   id: string;
@@ -26,12 +27,64 @@ interface ComponentInfo {
   imports: string[];
   children: string[];
 }
+interface ArchitectureInsightsData {
 
-interface AnalysisResult {
-  graph: GraphData;
-  components: ComponentInfo[];
+  rootComponents: string[];
+
+  leafComponents: string[];
+
+  deadComponents: string[];
+
+  mostImported: {
+
+    component: string;
+
+    count: number;
+
+  }[];
+
 }
 
+interface RouteNode {
+
+  id: string;
+
+  label: string;
+
+}
+
+interface RouteEdge {
+
+  source: string;
+
+  target: string;
+
+}
+
+interface RouteGraph {
+
+  nodes: RouteNode[];
+
+  edges: RouteEdge[];
+
+}
+interface AnalysisResult {
+
+  graph: GraphData;
+
+  components:
+  ComponentInfo[];
+
+  routes:
+  any[];
+
+  routeGraph:
+  RouteGraph;
+
+  insights:
+  ArchitectureInsightsData;
+
+}
 export default function ZipUploader() {
 
   const [file, setFile] =
@@ -111,6 +164,28 @@ export default function ZipUploader() {
 
           components:
             result.components,
+
+          routes:
+            result.routes ?? [],
+
+          routeGraph:
+            result.routeGraph ?? {
+              nodes: [],
+              edges: [],
+            },
+
+          insights:
+            result.insights ?? {
+
+              rootComponents: [],
+
+              leafComponents: [],
+
+              deadComponents: [],
+
+              mostImported: [],
+
+            },
 
         });
 
@@ -393,6 +468,11 @@ export default function ZipUploader() {
         {analysis && (
 
           <div className="mt-10">
+            <ArchitectureInsights
+              insights={
+                analysis.insights
+              }
+            />
 
             <div className="flex items-center justify-between mb-4">
 

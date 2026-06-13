@@ -1,4 +1,5 @@
 export interface RouteInfo {
-  path: string;
-  component: string;
+    route: string;
+    filePath: string;
+    type: "static" | "dynamic";
 }

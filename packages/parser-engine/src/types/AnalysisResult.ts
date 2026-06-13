@@ -1,24 +1,23 @@
-export interface ComponentDetails {
-
-  id: string;
-
-  name: string;
-
-  filePath: string;
-
-  imports: string[];
-
-  children: string[];
-
-}
+import { Graph } from "./Graph";
+import { ComponentDetails } from "./ComponentDetails";
+import { RouteInfo } from "./RouteInfo";
+import { RouteGraph } from "./RouteGraph";
+import { ArchitectureInsights } from "./ArchitectureInsights";
 
 export interface AnalysisResult {
 
-  graph: {
-    nodes: any[];
-    edges: any[];
-  };
+    graph: Graph;
 
-  components: ComponentDetails[];
+    components:
+        ComponentDetails[];
+
+    routes:
+        RouteInfo[];
+
+    routeGraph:
+        RouteGraph;
+
+    insights:
+        ArchitectureInsights;
 
 }
