@@ -4,6 +4,7 @@ import { useState } from "react";
 import GraphViewer from "./GraphViewer";
 import ExportButton from "./ExportButton";
 import ArchitectureInsights from "./ArchitectureInsights";
+import HealthScoreCard from "./HealthScoreCard";
 
 interface GraphNode {
   id: string;
@@ -27,6 +28,21 @@ interface ComponentInfo {
   imports: string[];
   children: string[];
 }
+
+interface HealthScore {
+
+  score: number;
+
+  status:
+  | "Excellent"
+  | "Good"
+  | "Warning"
+  | "Critical";
+
+  reasons: string[];
+
+}
+
 interface ArchitectureInsightsData {
 
   rootComponents: string[];
@@ -36,12 +52,12 @@ interface ArchitectureInsightsData {
   deadComponents: string[];
 
   mostImported: {
-
     component: string;
-
     count: number;
-
   }[];
+
+  healthScore:
+  HealthScore;
 
 }
 
@@ -138,10 +154,7 @@ export default function ZipUploader() {
       const result =
         await response.json();
 
-      console.log(
-        "UPLOAD RESPONSE:",
-        result
-      );
+     console.log(result.insights);
 
       if (!response.ok) {
 
@@ -464,10 +477,23 @@ export default function ZipUploader() {
 
         )}
 
-        {/* ANALYSIS */}
         {analysis && (
 
           <div className="mt-10">
+
+            <HealthScoreCard
+              score={
+                analysis.insights
+                  .healthScore
+                  .score
+              }
+              status={
+                analysis.insights
+                  .healthScore
+                  .status
+              }
+            />
+
             <ArchitectureInsights
               insights={
                 analysis.insights

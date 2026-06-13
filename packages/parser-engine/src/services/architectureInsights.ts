@@ -1,18 +1,22 @@
 import { Graph } from "../types/Graph";
-import { ArchitectureInsights }
-from "../types/ArchitectureInsights";
+import { ArchitectureInsights } from "../types/ArchitectureInsights";
+import { HealthScoreBuilder } from "./healthScore";
 
 export class ArchitectureInsightsBuilder {
+    private healthBuilder =
+    new HealthScoreBuilder();
 
     build(
         graph: Graph
     ): ArchitectureInsights {
+        
 
         const incoming =
             new Map<string, number>();
 
         const outgoing =
             new Map<string, number>();
+            
 
         for (
             const node
@@ -136,8 +140,17 @@ export class ArchitectureInsightsBuilder {
                     node =>
                         node.id
                 );
-
-        return {
+        const healthScore =
+            this.healthBuilder.build(
+                graph,
+                {
+                    rootComponents,
+                    leafComponents,
+                    deadComponents,
+                    mostImported,
+                }
+            );
+             return {
 
             rootComponents,
 
@@ -146,6 +159,8 @@ export class ArchitectureInsightsBuilder {
             deadComponents,
 
             mostImported,
+
+            healthScore,
 
         };
 

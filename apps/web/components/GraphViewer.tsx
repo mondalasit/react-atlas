@@ -255,14 +255,6 @@ edge => {
     }
   );
 
-const healthScore =
-Math.max(
-70,
-100 -
-Math.floor(
-graph.edges.length / 10
-)
-);
 
 return (
 
@@ -482,26 +474,22 @@ return (
 
         <div className="space-y-3">
 
-          <div className="flex justify-between">
-            <span>Components</span>
-            <span>
-              {graph.nodes.length}
-            </span>
-          </div>
+         <div className="flex justify-between">
+  <span>Components</span>
+  <span>{graph.nodes.length}</span>
+</div>
 
-          <div className="flex justify-between">
-            <span>Relations</span>
-            <span>
-              {graph.edges.length}
-            </span>
-          </div>
+<div className="flex justify-between">
+  <span>Relationships</span>
+  <span>{graph.edges.length}</span>
+</div>
 
-          <div className="flex justify-between">
-            <span>Health Score</span>
-            <span className="text-green-400">
-              {healthScore}%
-            </span>
-          </div>
+<div className="flex justify-between">
+  <span>Selected</span>
+  <span>
+    {selectedComponent?.name ?? "-"}
+  </span>
+</div>
 
         </div>
 

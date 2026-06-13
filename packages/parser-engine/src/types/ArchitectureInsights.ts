@@ -1,3 +1,6 @@
+import { HealthScore }
+from "./HealthScore";
+
 export interface ArchitectureInsights {
 
     rootComponents:
@@ -10,11 +13,11 @@ export interface ArchitectureInsights {
         string[];
 
     mostImported: {
-
         component: string;
-
         count: number;
-
     }[];
+
+    healthScore:
+        HealthScore;
 
 }
