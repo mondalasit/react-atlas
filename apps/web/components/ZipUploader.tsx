@@ -105,10 +105,14 @@ interface AnalysisResult {
   string[][];
 
 }
+
 export default function ZipUploader() {
 
   const [file, setFile] =
     useState<File | null>(null);
+
+  const [githubUrl, setGithubUrl] =
+    useState("");
 
   const [analysis, setAnalysis] =
     useState<AnalysisResult | null>(
@@ -120,7 +124,41 @@ export default function ZipUploader() {
 
   const [error, setError] =
     useState("");
+function handleAnalysisResult(
+  result: any
+) {
 
+  setAnalysis({
+
+    graph:
+      result.graph,
+
+    components:
+      result.components,
+
+    routes:
+      result.routes ?? [],
+
+    routeGraph:
+      result.routeGraph ?? {
+        nodes: [],
+        edges: [],
+      },
+
+    insights:
+      result.insights ?? {
+        rootComponents: [],
+        leafComponents: [],
+        deadComponents: [],
+        mostImported: [],
+      },
+
+    circularDependencies:
+      result.circularDependencies ?? [],
+
+  });
+
+}
   async function upload() {
 
     if (!file) {
@@ -174,35 +212,9 @@ export default function ZipUploader() {
         result.components
       ) {
 
-        setAnalysis({
-
-          graph:
-            result.graph,
-
-          components:
-            result.components,
-
-          routes:
-            result.routes ?? [],
-
-          routeGraph:
-            result.routeGraph ?? {
-              nodes: [],
-              edges: [],
-            },
-
-          insights:
-            result.insights ?? {
-              rootComponents: [],
-              leafComponents: [],
-              deadComponents: [],
-              mostImported: [],
-            },
-
-          circularDependencies:
-            result.circularDependencies ?? [],
-
-        });
+        handleAnalysisResult(
+          result
+        );
 
       } else {
 
@@ -215,6 +227,74 @@ export default function ZipUploader() {
     } catch (err) {
 
       console.error(err);
+
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Unknown error"
+      );
+
+    } finally {
+
+      setLoading(false);
+
+    }
+
+  }
+  async function analyzeGithub() {
+
+    if (!githubUrl) {
+
+      setError(
+        "Please enter a GitHub repository URL."
+      );
+
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+
+    try {
+
+      const response =
+        await fetch(
+          "http://localhost:4000/analyze-github",
+          {
+            method: "POST",
+
+            headers: {
+              "Content-Type":
+                "application/json",
+            },
+
+            body: JSON.stringify({
+
+              repositoryUrl:
+                githubUrl,
+
+            }),
+
+          }
+        );
+
+      const result =
+        await response.json();
+
+      if (!response.ok) {
+
+        throw new Error(
+          result.error ||
+          "GitHub analysis failed"
+        );
+
+      }
+
+      handleAnalysisResult(
+        result
+      );
+
+    } catch (err) {
 
       setError(
         err instanceof Error
@@ -317,7 +397,7 @@ export default function ZipUploader() {
         <div className="text-center mb-10">
 
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600/20 border border-blue-500/30 text-blue-400 text-sm mb-4">
-            ⚛ React Atlas v1.1
+            ⚛ React Atlas v1.2
           </div>
 
           <h1 className="text-6xl font-bold mb-4">
@@ -332,7 +412,60 @@ export default function ZipUploader() {
           </p>
 
         </div>
+        <div className="mb-6">
 
+          <label
+            className="
+      block
+      text-sm
+      text-slate-400
+      mb-2
+    "
+          >
+            GitHub Repository
+          </label>
+
+          <div className="flex gap-3">
+
+            <input
+              type="text"
+              value={githubUrl}
+              onChange={(e) =>
+                setGithubUrl(
+                  e.target.value
+                )
+              }
+              placeholder="https://github.com/user/repository"
+              className="
+        flex-1
+        rounded-lg
+        border
+        border-slate-700
+        bg-slate-950
+        px-4
+        py-3
+      "
+            />
+
+            <button
+              onClick={analyzeGithub}
+              disabled={loading}
+              className="
+        px-6
+        py-3
+        rounded-lg
+        bg-purple-600
+        hover:bg-purple-700
+        transition
+        font-semibold
+      "
+            >
+              Analyze Repo
+            </button>
+
+          </div>
+
+        </div>
         {/* UPLOAD CARD */}
         <div className="max-w-3xl mx-auto">
 

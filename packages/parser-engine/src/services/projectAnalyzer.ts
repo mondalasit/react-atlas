@@ -120,7 +120,9 @@ export class ProjectAnalyzer {
             component.name,
 
           filePath:
-            component.filePath,
+            component.filePath
+              .replace(projectPath, "")
+              .replace(/\\/g, "/"),
 
           imports:
             imports.map(
