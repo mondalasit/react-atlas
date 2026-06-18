@@ -7,6 +7,23 @@ import ArchitectureInsights from "./ArchitectureInsights";
 import HealthScoreCard from "./HealthScoreCard";
 import CircularDependencies from "./CircularDependencies";
 import ProjectSummaryDashboard from "./ProjectSummaryDashboard";
+import InsightsAccordion from "./InsightsAccordion";
+import CircularDependenciesAccordion from "./CircularDependenciesAccordion";
+import SummaryCards from "./SummaryCards";
+import HeroSection
+  from "./HeroSection";
+
+import FeaturesSection
+  from "./FeaturesSection";
+
+import DashboardHeader
+  from "./DashboardHeader";
+
+import DashboardSidebar
+  from "./DashboardSidebar";
+
+import GraphSection
+  from "./GraphSection";
 
 interface GraphNode {
   id: string;
@@ -395,24 +412,7 @@ export default function ZipUploader() {
       {/* HERO */}
       <div className="max-w-7xl mx-auto px-8 py-10">
 
-        <div className="text-center mb-10">
-
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600/20 border border-blue-500/30 text-blue-400 text-sm mb-4">
-            ⚛ React Atlas v1.2
-          </div>
-
-          <h1 className="text-6xl font-bold mb-4">
-            Visualize Your
-            <span className="text-blue-500"> React Architecture</span>
-          </h1>
-
-          <p className="text-slate-400 text-lg max-w-3xl mx-auto">
-            Upload a React project and instantly explore components,
-            dependencies, relationships, architecture metrics,
-            and project structure.
-          </p>
-
-        </div>
+        <HeroSection />
         <div className="mb-6">
 
           <label
@@ -561,125 +561,122 @@ export default function ZipUploader() {
 
         {/* FEATURES */}
         {!analysis && (
-
-          <div className="grid md:grid-cols-3 gap-6 mt-12">
-
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
-              <div className="text-4xl mb-4">
-                ⚛
-              </div>
-
-              <h3 className="font-semibold text-lg mb-2">
-                Component Intelligence
-              </h3>
-
-              <p className="text-slate-400 text-sm">
-                Explore component relationships,
-                imports, exports and hierarchy.
-              </p>
-            </div>
-
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
-              <div className="text-4xl mb-4">
-                🔍
-              </div>
-
-              <h3 className="font-semibold text-lg mb-2">
-                Architecture Search
-              </h3>
-
-              <p className="text-slate-400 text-sm">
-                Quickly locate components and
-                navigate large codebases.
-              </p>
-            </div>
-
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
-              <div className="text-4xl mb-4">
-                📊
-              </div>
-
-              <h3 className="font-semibold text-lg mb-2">
-                Graph Analytics
-              </h3>
-
-              <p className="text-slate-400 text-sm">
-                Understand architecture metrics
-                and dependency structures.
-              </p>
-            </div>
-
-          </div>
-
+          <FeaturesSection />
         )}
 
         {analysis && (
 
-          <div className="mt-10">
-            <ProjectSummaryDashboard
-              totalComponents={
+
+          <div className="mt-6">
+            <div className="flex justify-end mb-6">
+
+              <button
+                onClick={() => {
+
+                  setAnalysis(null);
+                  setFile(null);
+                  setGithubUrl("");
+                  setError("");
+
+                }}
+                className="
+      px-4
+      py-2
+      rounded-lg
+      bg-slate-800
+      hover:bg-slate-700
+      transition
+    "
+              >
+                Analyze Another Project
+              </button>
+
+            </div>
+            <SummaryCards
+              components={
                 analysis.components.length
               }
-              totalRelationships={
+              relationships={
                 analysis.graph.edges.length
-              }
-              rootComponents={
-                analysis.insights.rootComponents.length
-              }
-              leafComponents={
-                analysis.insights.leafComponents.length
-              }
-              deadComponents={
-                analysis.insights.deadComponents.length
-              }
-              circularDependencies={
-                analysis.circularDependencies.length
               }
               healthScore={
                 analysis.insights.healthScore.score
               }
-            />
-
-            <HealthScoreCard
-              score={
-                analysis.insights
-                  .healthScore
-                  .score
-              }
-              status={
-                analysis.insights
-                  .healthScore
-                  .status
-              }
-            />
-
-            <ArchitectureInsights
-              insights={
-                analysis.insights
-              }
-            />
-            <CircularDependencies
               cycles={
-                analysis.circularDependencies
+                analysis.circularDependencies.length
               }
             />
-            <div className="flex items-center justify-between mb-4">
+            <div
+              className="
+    grid
+    lg:grid-cols-4
+    gap-6
+  "
+            >
 
-              <h2 className="text-2xl font-semibold">
-                Architecture Graph
-              </h2>
+              <div
+                className="
+      lg:col-span-3
+    "
+              >
 
-              <ExportButton
-                data={analysis}
-              />
+                <div className="flex items-center justify-between mb-4">
 
-            </div>
+                  <h2 className="text-2xl font-semibold">
+                    Architecture Graph
+                  </h2>
 
-            <div className="rounded-2xl overflow-hidden border border-slate-800">
-              <GraphViewer
-                graph={analysis.graph}
-                components={analysis.components}
-              />
+                  <ExportButton
+                    data={analysis}
+                  />
+
+                </div>
+
+                <div
+                  className="
+        rounded-2xl
+        overflow-hidden
+        border
+        border-slate-800
+      "
+                >
+                  <GraphViewer
+                    graph={analysis.graph}
+                    components={analysis.components}
+                  />
+                </div>
+
+              </div>
+
+              <div
+                className="
+      space-y-4
+    "
+              >
+
+                <HealthScoreCard
+                  score={
+                    analysis.insights.healthScore.score
+                  }
+                  status={
+                    analysis.insights.healthScore.status
+                  }
+                />
+
+                <InsightsAccordion
+                  insights={
+                    analysis.insights
+                  }
+                />
+
+                <CircularDependenciesAccordion
+                  cycles={
+                    analysis.circularDependencies
+                  }
+                />
+
+              </div>
+
             </div>
 
           </div>
@@ -698,8 +695,7 @@ export default function ZipUploader() {
   "
       >
 
-        React Atlas v1.1
-
+        React Atlas v1.2
         <div className="mt-2 text-sm">
           Visualize • Explore • Understand
         </div>
