@@ -1,6 +1,7 @@
-import { execSync } from "child_process";
 import fs from "fs";
+import os from "os";
 import path from "path";
+import { execSync } from "child_process";
 
 export class GitHubCloner {
 
@@ -10,26 +11,25 @@ export class GitHubCloner {
 
     const repositoriesDir =
       path.join(
-        process.cwd(),
-        "repos"
+        os.tmpdir(),
+        "react-atlas"
       );
 
     fs.mkdirSync(
       repositoriesDir,
-      { recursive: true }
+      {
+        recursive: true
+      }
     );
-
-    const repoFolder =
-      Date.now().toString();
 
     const targetPath =
       path.join(
         repositoriesDir,
-        repoFolder
+        Date.now().toString()
       );
 
     execSync(
-      `git clone ${repositoryUrl} "${targetPath}"`,
+      `git clone --depth 1 ${repositoryUrl} "${targetPath}"`,
       {
         stdio: "inherit"
       }
@@ -37,4 +37,5 @@ export class GitHubCloner {
 
     return targetPath;
   }
+
 }

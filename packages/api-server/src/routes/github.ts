@@ -1,10 +1,11 @@
+import fs from "fs";
 import { Router } from "express";
 
 import { GitHubCloner }
-from "../services/githubCloner";
+  from "../services/githubCloner";
 
 import { ProjectAnalyzer }
-from "../../../parser-engine/src/services/projectAnalyzer";
+  from "../../../parser-engine/src/services/projectAnalyzer";
 
 const router = Router();
 
@@ -17,6 +18,8 @@ const analyzer =
 router.post(
   "/analyze-github",
   async (req, res) => {
+
+    let projectPath = "";
 
     try {
 
@@ -35,7 +38,7 @@ router.post(
 
       }
 
-      const projectPath =
+      projectPath =
         cloner.clone(
           repositoryUrl
         );
@@ -85,6 +88,40 @@ router.post(
               : "Unknown error"
 
         });
+
+    } finally {
+
+      if (
+        projectPath &&
+        fs.existsSync(
+          projectPath
+        )
+      ) {
+
+        try {
+
+          fs.rmSync(
+            projectPath,
+            {
+              recursive: true,
+              force: true,
+            }
+          );
+
+          console.log(
+            `Deleted temporary repository: ${projectPath}`
+          );
+
+        } catch (cleanupError) {
+
+          console.error(
+            "Failed to delete temporary repository:",
+            cleanupError
+          );
+
+        }
+
+      }
 
     }
 
