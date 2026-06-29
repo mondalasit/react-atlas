@@ -90,38 +90,7 @@ export default function ComponentDetails({
 
       {/* FILE */}
 
-      <div
-        className="
-          bg-slate-900
-          border
-          border-slate-800
-          rounded-2xl
-          p-5
-        "
-      >
-
-        <h3
-          className="
-            text-sm
-            uppercase
-            text-slate-500
-            mb-3
-          "
-        >
-          File Path
-        </h3>
-
-        <p
-          className="
-            text-sm
-            text-slate-300
-            break-all
-          "
-        >
-          {component.filePath}
-        </p>
-
-      </div>
+      
 
       {/* STATS */}
 
