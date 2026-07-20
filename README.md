@@ -1,267 +1,345 @@
-# React Atlas v1.2
+# 🚀 React Atlas v1.3
 
-### Architecture Intelligence Release
+### Route Intelligence Release
 
 Visualize, understand, and analyze any React codebase in minutes.
 
-React Atlas transforms React projects into interactive architecture graphs, helping developers explore component relationships, dependencies, architecture quality, and project structure without manually tracing files.
+React Atlas transforms React projects into interactive architecture graphs, enabling developers to explore component relationships, project architecture, routes, dependencies, and overall architecture quality without manually tracing files.
 
 ---
 
-## What's New in v1.2
+## 📸 Screenshots
 
-### GitHub Repository Analysis
+> Coming Soon
 
-React Atlas can now analyze public GitHub repositories directly.
+- Dashboard Overview
+- Interactive Architecture Graph
+- Component Intelligence Panel
+- Route Discovery Dashboard
+- Architecture Insights
+
+---
+
+# ✨ What's New in v1.3
+
+## 🛣 Route Discovery
+
+React Atlas now automatically discovers application routes during project analysis.
 
 Features:
 
-* Public GitHub Repository Analysis
-* Automatic Repository Cloning
-* One-click Architecture Analysis
-* Automatic Repository Cleanup
-* No ZIP download required
+- Static Route Detection
+- Dynamic Route Detection
+- Route Summary Dashboard
+- Route Metrics
+- Cleaner Route Visualization
 
 ---
 
-### Circular Dependency Detection
+## 📊 Improved Dashboard
 
-React Atlas now automatically detects circular dependencies between components.
+The dashboard has been redesigned for a cleaner and more developer-friendly experience.
 
-Features:
+Improvements include:
 
-* Circular Dependency Detection
-* Dependency Cycle Visualization
-* Architecture Smell Identification
-* Dependency Health Monitoring
-
----
-
-### Architecture Health Intelligence
-
-React Atlas now evaluates architecture quality automatically.
-
-Features:
-
-* Architecture Health Score
-* Health Status Classification
-* Architecture Quality Indicators
-* Health Recommendations
-
-Health Categories:
-
-* Excellent
-* Good
-* Warning
-* Critical
+- Improved Summary Cards
+- Better Information Hierarchy
+- Cleaner Sidebar
+- Improved Graph Visibility
+- Better Responsive Layout
+- Modern Dashboard Design
 
 ---
 
-### Enhanced Architecture Insights
+## 🧠 Enhanced Architecture Insights
 
-Architecture insights have been significantly improved.
+Architecture Insights have been redesigned to provide more meaningful project intelligence.
 
 Insights include:
 
-* Root Components
-* Leaf Components
-* Dead Components
-* Most Imported Components
-* Component Relationship Metrics
+- Root Components
+- Leaf Components
+- Dead Components
+- Most Imported Components
+- Component Relationship Metrics
 
 ---
 
-### Redesigned Dashboard Experience
+## 🌐 GitHub Repository Analysis
 
-React Atlas now provides a modern architecture dashboard.
+Analyze any public GitHub repository directly.
 
-Improvements:
+Features:
 
-* Summary Dashboard Cards
-* Improved Graph Visibility
-* Sidebar Architecture Intelligence
-* Accordion-based Insights
-* Cleaner Information Hierarchy
-* Enhanced User Experience
-
----
-
-# Features
-
-## Project Analysis
-
-* Scan React projects automatically
-* Parse JavaScript and TypeScript React components
-* Detect functional and arrow-function components
-* Extract JSX component relationships
-* Analyze imports and dependencies
-* Build component hierarchy graphs
-* Detect circular dependencies
+- Public Repository Analysis
+- Automatic Repository Cloning
+- One-click Analysis
+- Automatic Repository Cleanup
+- No ZIP Download Required
 
 ---
 
-## Architecture Visualization
+## 🔄 Circular Dependency Detection
 
-* Interactive graph visualization powered by React Flow
-* Component-to-component relationship mapping
-* Parent-child component hierarchy
-* Searchable architecture graph
-* Node highlighting
-* Dependency exploration
-* Interactive MiniMap
+React Atlas automatically detects circular dependencies between React components.
 
----
+Features:
 
-## Component Intelligence
-
-Inspect any component in the architecture.
-
-Displays:
-
-* Component Name
-* File Path
-* Imported Components
-* Child Components
-* Relationship Navigation
-
-Developers can navigate architecture directly through component relationships.
+- Circular Dependency Detection
+- Dependency Cycle Visualization
+- Architecture Smell Detection
+- Dependency Health Monitoring
 
 ---
 
-## Architecture Intelligence
+## ❤️ Architecture Health Intelligence
 
-React Atlas provides advanced architecture insights including:
+React Atlas evaluates your project's architecture quality automatically.
 
-* Total Components
-* Total Relationships
-* Root Components
-* Leaf Components
-* Dead Components
-* Most Imported Components
-* Circular Dependencies
-* Architecture Health Score
+Health Categories
+
+- Excellent
+- Good
+- Warning
+- Critical
+
+Health Score considers:
+
+- Circular Dependencies
+- Dead Components
+- Component Relationships
+- Root Components
+- Architecture Complexity
 
 ---
 
-## GitHub Repository Analysis
+# ✨ Features
 
-Analyze public GitHub repositories directly.
+## 📦 Project Analysis
 
-Workflow:
+Automatically analyze React applications.
+
+Supported:
+
+- JavaScript React Projects
+- TypeScript React Projects
+- Functional Components
+- Arrow Function Components
+- JSX Component Detection
+- Import Analysis
+- Dependency Analysis
+- Route Discovery
+- Circular Dependency Detection
+
+---
+
+## 🌐 GitHub Repository Analysis
+
+Analyze public repositories directly.
+
+Workflow
 
 ```text
 GitHub URL
-      ↓
-Automatic Clone
-      ↓
+      │
+      ▼
+Clone Repository
+      │
+      ▼
+Parser Engine
+      │
+      ▼
 Architecture Analysis
-      ↓
+      │
+      ▼
 Interactive Dashboard
 ```
 
 Supported:
 
-* Public GitHub Repositories
-* Instant Analysis
-* Automatic Cleanup
+- Public GitHub Repositories
+- Instant Analysis
+- Automatic Cleanup
 
 ---
 
-## ZIP Upload Analysis
+## 📂 ZIP Upload Analysis
 
-* Upload React projects as ZIP files
-* Automatic extraction and analysis
-* No manual configuration required
-* Instant architecture generation
+Analyze projects without cloning repositories.
 
----
+Features:
 
-## Export Architecture Data
-
-Export architecture analysis results:
-
-* JSON Export
-* Graph Data
-* Component Metadata
-* Architecture Metrics
+- Upload ZIP
+- Automatic Extraction
+- Instant Analysis
+- Interactive Visualization
 
 ---
 
-# Architecture
+## 🕸 Architecture Visualization
 
-React Atlas consists of three main parts:
+Interactive architecture visualization powered by React Flow.
+
+Features:
+
+- Interactive Graph
+- Component Relationships
+- Parent-Child Hierarchy
+- Searchable Graph
+- Node Highlighting
+- MiniMap
+- Dependency Navigation
+- Zoom Controls
+
+---
+
+## 🧩 Component Intelligence
+
+Inspect any component in the architecture graph.
+
+Displays:
+
+- Component Name
+- Component Type
+- File Path
+- Imported Components
+- Child Components
+- Relationship Navigation
+
+Navigate between related components with a single click.
+
+---
+
+## 🛣 Route Intelligence
+
+Discover project routes automatically.
+
+Includes:
+
+- Static Routes
+- Dynamic Routes
+- Route Metrics
+- Route Summary
+- Route Dashboard
+
+---
+
+## 📈 Architecture Intelligence
+
+React Atlas automatically generates architecture insights.
+
+Metrics include:
+
+- Total Components
+- Total Relationships
+- Architecture Health Score
+- Root Components
+- Leaf Components
+- Dead Components
+- Most Imported Components
+- Circular Dependencies
+- Route Count
+
+---
+
+## 📤 Export Support
+
+Export project analysis.
+
+Supported:
+
+- JSON Export
+- Graph Data
+- Component Metadata
+- Architecture Metrics
+
+---
+
+# 🏗 Architecture
 
 ```text
-React Project / GitHub Repository
-                ↓
-          Parser Engine
-                ↓
-         Graph Builder
-                ↓
-           API Server
-                ↓
-          Web Interface
-                ↓
-     Architecture Intelligence
-                ↓
-     Interactive Architecture Graph
+                React Project
+                      │
+        ┌─────────────┴─────────────┐
+        │                           │
+ ZIP Upload                 GitHub Repository
+        │                           │
+        └─────────────┬─────────────┘
+                      │
+               Parser Engine
+                      │
+           Component Scanner
+                      │
+         Route Discovery Engine
+                      │
+             Graph Builder
+                      │
+          Architecture Intelligence
+                      │
+             Interactive Dashboard
 ```
 
 ---
 
-# Repository Structure
+# 📁 Repository Structure
 
 ```text
 react-atlas
 │
 ├── apps
 │   └── web
+│       ├── app
+│       ├── components
+│       ├── hooks
+│       └── styles
 │
 ├── packages
 │   ├── parser-engine
 │   └── api-server
 │
-└── docs
-    ├── getting-started.md
-    └── releases
+├── docs
+│   ├── getting-started.md
+│   └── releases
+│
+└── README.md
 ```
 
 ---
 
-# Tech Stack
+# 🛠 Tech Stack
 
 ## Frontend
 
-* Next.js
-* React
-* TypeScript
-* React Flow
-* Tailwind CSS
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- React Flow
 
 ## Backend
 
-* Express.js
-* TypeScript
-* Multer
+- Express.js
+- TypeScript
+- Multer
 
 ## Analysis Engine
 
-* Babel Parser
-* AST Traversal
-* Custom Graph Builder
+- Babel Parser
+- TypeScript AST
+- Custom Graph Builder
 
 ---
 
-# Installation
+# ⚙️ Installation
 
-Clone the repository:
+Clone the repository.
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/react-atlas.git
+git clone https://github.com/mondalasit/react-atlas.git
 cd react-atlas
 ```
 
-Install dependencies:
+Install dependencies.
 
 ```bash
 cd packages/parser-engine
@@ -276,7 +354,7 @@ npm install
 
 ---
 
-# Running React Atlas
+# ▶️ Running React Atlas
 
 ## Start API Server
 
@@ -285,11 +363,13 @@ cd packages/api-server
 npm run dev
 ```
 
-Server:
+Server
 
 ```text
 http://localhost:4000
 ```
+
+---
 
 ## Start Web Application
 
@@ -298,7 +378,7 @@ cd apps/web
 npm run dev
 ```
 
-Application:
+Application
 
 ```text
 http://localhost:3000
@@ -306,125 +386,197 @@ http://localhost:3000
 
 ---
 
-# Usage
+# 🚀 Usage
 
-## ZIP Analysis
+## ZIP Project Analysis
 
-1. Open React Atlas
-2. Upload a React project ZIP file
-3. Click Upload & Analyze
+1. Launch React Atlas
+2. Upload a React project ZIP
+3. Click **Upload & Analyze**
+4. Explore the architecture graph
+
+---
+
+## GitHub Repository Analysis
+
+1. Launch React Atlas
+2. Paste a GitHub repository URL
+3. Click **Analyze Repository**
 4. Explore the generated architecture graph
 
-## GitHub Analysis
-
-1. Open React Atlas
-2. Paste a public GitHub repository URL
-3. Click Analyze Repository
-4. Explore the generated architecture graph
-
----
-
-# Current Capabilities
-
-React Atlas v1.2 can:
-
-### Analysis
-
-* Detect React components
-* Extract JSX component usage
-* Analyze imports
-* Build component graphs
-* Detect circular dependencies
-* Analyze uploaded ZIP projects
-* Analyze public GitHub repositories
-
-### Visualization
-
-* Interactive architecture graph
-* Searchable graph navigation
-* Component relationship mapping
-* MiniMap navigation
-* Dependency exploration
-
-### Intelligence
-
-* Component Details Panel
-* Architecture Health Score
-* Root Component Detection
-* Leaf Component Detection
-* Dead Component Detection
-* Most Imported Components
-* Circular Dependency Detection
-* Architecture Insights
-
-### Export
-
-* JSON Export Support
-
----
-
-# Roadmap
-
-## v1.3 — Route Intelligence
-
-Planned:
-
-* Route Discovery UI
-* Route Graph Visualization
-* Dynamic Route Analysis
-* Navigation Flow Mapping
-
----
-
-## v1.4 — State Intelligence
-
-Planned:
-
-* Context Analysis
-* Redux Analysis
-* Zustand Analysis
-* State Flow Visualization
-
----
-
-## v2.0 — AI Architecture Assistant
-
-Planned:
-
-* Architecture Explanations
-* Refactoring Suggestions
-* Dependency Insights
-* Architectural Smell Detection
-* Performance Recommendations
-
----
-
-# Release Information
-
-Current Release:
+Example
 
 ```text
-v1.2.0
-```
+https://github.com/facebook/react
 
-Codename:
-
-```text
-Architecture Intelligence
-```
-
-Status:
-
-```text
-Stable Release
+https://github.com/vercel/next.js
 ```
 
 ---
 
-# License
+# 📊 Current Capabilities
 
-MIT License
+## Analysis
+
+- React Component Detection
+- JSX Parsing
+- Import Analysis
+- Dependency Analysis
+- Circular Dependency Detection
+- Route Discovery
+- ZIP Analysis
+- GitHub Repository Analysis
 
 ---
 
-Built with ❤️ using React, TypeScript, AST Analysis, and Graph Visualization.
+## Visualization
+
+- Interactive Graph
+- Searchable Components
+- Component Relationships
+- MiniMap
+- Dependency Navigation
+- Route Dashboard
+
+---
+
+## Intelligence
+
+- Component Intelligence
+- Architecture Health Score
+- Root Components
+- Leaf Components
+- Dead Components
+- Most Imported Components
+- Route Metrics
+- Circular Dependencies
+
+---
+
+## Export
+
+- JSON Export
+- Graph Metadata
+- Architecture Metrics
+
+---
+
+# 🗺 Roadmap
+
+## ✅ v1.3 — Route Intelligence
+
+Completed
+
+- Route Discovery
+- Route Summary Dashboard
+- Dashboard Improvements
+- Improved Architecture Insights
+- Better Sidebar
+- Improved Summary Cards
+
+---
+
+## 🚧 v1.4 — Architecture Intelligence+
+
+Planned
+
+- Component Details Panel
+- Dependency Explorer
+- Route Graph Visualization
+- Architecture Metrics
+- Impact Analysis
+- Component Search
+- Advanced Filtering
+
+---
+
+## 🚧 v1.5 — State Intelligence
+
+Planned
+
+- React Context Analysis
+- Redux Analysis
+- Zustand Analysis
+- State Flow Visualization
+
+---
+
+## 🤖 v2.0 — AI Architecture Assistant
+
+Planned
+
+- AI Architecture Reports
+- Architecture Explanations
+- Refactoring Suggestions
+- Dependency Insights
+- Architecture Smell Detection
+- Performance Recommendations
+
+---
+
+# 📦 Release Information
+
+Current Release
+
+```text
+Version : v1.3.0
+
+Codename : Route Intelligence Release
+
+Status : Stable
+```
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome!
+
+If you'd like to improve React Atlas:
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push your branch
+5. Open a Pull Request
+
+---
+
+# 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+# 👨‍💻 Author
+
+**Asit Mondal**
+
+GitHub:
+https://github.com/mondalasit
+
+Repository:
+https://github.com/mondalasit/react-atlas
+
+---
+
+# ⭐ Support
+
+If you find React Atlas useful:
+
+- ⭐ Star this repository
+- 🐞 Report bugs
+- 💡 Suggest new features
+- 🤝 Contribute improvements
+
+Your support helps make React Atlas even better for the React community.
+
+---
+
+<div align="center">
+
+### Built with ❤️ using React, TypeScript, AST Analysis, and React Flow
+
+**Happy Architecture Exploring! 🚀**
+
+</div>

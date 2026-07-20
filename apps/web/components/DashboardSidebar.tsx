@@ -7,6 +7,9 @@ from "./InsightsAccordion";
 import CircularDependenciesAccordion
 from "./CircularDependenciesAccordion";
 
+import RouteDiscoveryAccordion
+  from "./RouteDiscoveryAccordion";
+
 interface Props {
 
   analysis: any;
@@ -20,6 +23,9 @@ export default function DashboardSidebar({
   return (
 
     <div className="space-y-4">
+      <RouteDiscoveryAccordion
+  routes={analysis.routes}
+/>
 
       <HealthScoreCard
         score={
