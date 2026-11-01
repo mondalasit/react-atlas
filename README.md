@@ -1,4 +1,4 @@
-# 🚀 React Atlas v1.3
+#  React Atlas v1.3
 
 ### Route Intelligence Release
 
@@ -8,7 +8,7 @@ React Atlas transforms React projects into interactive architecture graphs, enab
 
 ---
 
-## 📸 Screenshots
+##  Screenshots
 
 > Coming Soon
 
@@ -20,9 +20,9 @@ React Atlas transforms React projects into interactive architecture graphs, enab
 
 ---
 
-# ✨ What's New in v1.3
+#  What's New in v1.3
 
-## 🛣 Route Discovery
+##  Route Discovery
 
 React Atlas now automatically discovers application routes during project analysis.
 
@@ -36,7 +36,7 @@ Features:
 
 ---
 
-## 📊 Improved Dashboard
+##  Improved Dashboard
 
 The dashboard has been redesigned for a cleaner and more developer-friendly experience.
 
@@ -51,7 +51,7 @@ Improvements include:
 
 ---
 
-## 🧠 Enhanced Architecture Insights
+##  Enhanced Architecture Insights
 
 Architecture Insights have been redesigned to provide more meaningful project intelligence.
 
@@ -65,7 +65,7 @@ Insights include:
 
 ---
 
-## 🌐 GitHub Repository Analysis
+##  GitHub Repository Analysis
 
 Analyze any public GitHub repository directly.
 
@@ -79,7 +79,7 @@ Features:
 
 ---
 
-## 🔄 Circular Dependency Detection
+##  Circular Dependency Detection
 
 React Atlas automatically detects circular dependencies between React components.
 
@@ -92,7 +92,7 @@ Features:
 
 ---
 
-## ❤️ Architecture Health Intelligence
+##  Architecture Health Intelligence
 
 React Atlas evaluates your project's architecture quality automatically.
 
@@ -113,9 +113,9 @@ Health Score considers:
 
 ---
 
-# ✨ Features
+#  Features
 
-## 📦 Project Analysis
+##  Project Analysis
 
 Automatically analyze React applications.
 
@@ -133,7 +133,7 @@ Supported:
 
 ---
 
-## 🌐 GitHub Repository Analysis
+##  GitHub Repository Analysis
 
 Analyze public repositories directly.
 
@@ -163,7 +163,7 @@ Supported:
 
 ---
 
-## 📂 ZIP Upload Analysis
+##  ZIP Upload Analysis
 
 Analyze projects without cloning repositories.
 
@@ -176,7 +176,7 @@ Features:
 
 ---
 
-## 🕸 Architecture Visualization
+## Architecture Visualization
 
 Interactive architecture visualization powered by React Flow.
 
@@ -193,7 +193,7 @@ Features:
 
 ---
 
-## 🧩 Component Intelligence
+##  Component Intelligence
 
 Inspect any component in the architecture graph.
 
@@ -210,7 +210,7 @@ Navigate between related components with a single click.
 
 ---
 
-## 🛣 Route Intelligence
+##  Route Intelligence
 
 Discover project routes automatically.
 
@@ -224,7 +224,7 @@ Includes:
 
 ---
 
-## 📈 Architecture Intelligence
+##  Architecture Intelligence
 
 React Atlas automatically generates architecture insights.
 
@@ -242,7 +242,7 @@ Metrics include:
 
 ---
 
-## 📤 Export Support
+##  Export Support
 
 Export project analysis.
 
@@ -255,7 +255,7 @@ Supported:
 
 ---
 
-# 🏗 Architecture
+#  Architecture
 
 ```text
                 React Project
@@ -281,7 +281,7 @@ Supported:
 
 ---
 
-# 📁 Repository Structure
+#  Repository Structure
 
 ```text
 react-atlas
@@ -306,7 +306,7 @@ react-atlas
 
 ---
 
-# 🛠 Tech Stack
+#  Tech Stack
 
 ## Frontend
 
@@ -330,7 +330,7 @@ react-atlas
 
 ---
 
-# ⚙️ Installation
+#  Installation
 
 Clone the repository.
 
@@ -354,7 +354,7 @@ npm install
 
 ---
 
-# ▶️ Running React Atlas
+#  Running React Atlas
 
 ## Start API Server
 
@@ -386,7 +386,7 @@ http://localhost:3000
 
 ---
 
-# 🚀 Usage
+#  Usage
 
 ## ZIP Project Analysis
 
@@ -414,7 +414,7 @@ https://github.com/vercel/next.js
 
 ---
 
-# 📊 Current Capabilities
+#  Current Capabilities
 
 ## Analysis
 
@@ -461,9 +461,9 @@ https://github.com/vercel/next.js
 
 ---
 
-# 🗺 Roadmap
+#  Roadmap
 
-## ✅ v1.3 — Route Intelligence
+##  v1.3 — Route Intelligence
 
 Completed
 
@@ -476,7 +476,7 @@ Completed
 
 ---
 
-## 🚧 v1.4 — Architecture Intelligence+
+##  v1.4 — Architecture Intelligence+
 
 Planned
 
@@ -490,7 +490,7 @@ Planned
 
 ---
 
-## 🚧 v1.5 — State Intelligence
+##  v1.5 — State Intelligence
 
 Planned
 
@@ -501,7 +501,7 @@ Planned
 
 ---
 
-## 🤖 v2.0 — AI Architecture Assistant
+##  v2.0 — AI Architecture Assistant
 
 Planned
 
@@ -514,7 +514,7 @@ Planned
 
 ---
 
-# 📦 Release Information
+#  Release Information
 
 Current Release
 
@@ -528,7 +528,7 @@ Status : Stable
 
 ---
 
-# 🤝 Contributing
+#  Contributing
 
 Contributions are welcome!
 
@@ -542,13 +542,13 @@ If you'd like to improve React Atlas:
 
 ---
 
-# 📄 License
+#  License
 
 This project is licensed under the MIT License.
 
 ---
 
-# 👨‍💻 Author
+#  Author
 
 **Asit Mondal**
 
@@ -560,14 +560,14 @@ https://github.com/mondalasit/react-atlas
 
 ---
 
-# ⭐ Support
+#  Support
 
 If you find React Atlas useful:
 
-- ⭐ Star this repository
-- 🐞 Report bugs
-- 💡 Suggest new features
-- 🤝 Contribute improvements
+-  Star this repository
+-  Report bugs
+-  Suggest new features
+-  Contribute improvements
 
 Your support helps make React Atlas even better for the React community.
 
@@ -577,6 +577,6 @@ Your support helps make React Atlas even better for the React community.
 
 ### Built with ❤️ using React, TypeScript, AST Analysis, and React Flow
 
-**Happy Architecture Exploring! 🚀**
+Happy Architecture Exploring! 
 
 </div>
